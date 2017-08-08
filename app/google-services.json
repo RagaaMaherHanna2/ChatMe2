@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1023368275763",
+    "firebase_url": "https://advancedandroidsquawker-779ad.firebaseio.com",
+    "project_id": "advancedandroidsquawker-779ad",
+    "storage_bucket": "advancedandroidsquawker-779ad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1023368275763:android:c533790d68a8bef4",
+        "android_client_info": {
+          "package_name": "com.example.marian.chatme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1023368275763-g4chp7u8qe50dclf1ij0sht0cnc28a43.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.marian.chatme",
+            "certificate_hash": "3c325cce0cc489cdc5124da34bab3594784f14d4"
+          }
+        },
+        {
+          "client_id": "1023368275763-9smnivkpi05n7sd57ealm9lvsss8lhgh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaPoiHWErsfpuC5hEVIEBfVrnOHfwUDeI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1023368275763-9smnivkpi05n7sd57ealm9lvsss8lhgh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

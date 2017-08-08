@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/main_Settingd_btn"
+        android:orderInCategory="1"
+        android:title="@string/account_settings" />
+
+
+    <!--<item-->
+        <!--android:id="@+id/float_widget"-->
+        <!--android:orderInCategory="2"-->
+        <!--android:title="@string/float_widget" />-->
+
+    <item
+        android:id="@+id/main_layout_btn"
+        android:orderInCategory="3"
+        android:title="@string/sign_out" />
+
+</menu>
