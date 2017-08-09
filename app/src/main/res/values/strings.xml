@@ -26,7 +26,7 @@
     <string name="save_changes">Save Changes</string>
     <string name="account_settings">Account Settings</string>
     <string name="logout">Logout</string>
-    <string name="textview">textView</string>
+    <string name="message_text">Message Text</string>
     <string name="chat_now">chat now</string>
     <string name="user_status">user status</string>
     <string name="Error_login">Cannot sign in, please check your connection and try again</string>

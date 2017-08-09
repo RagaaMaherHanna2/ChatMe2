@@ -6,11 +6,9 @@ public class Messages {
     private long time;
     private boolean seen;
 
-    // constractor
     public Messages() {
     }
 
-    // constractor
     public Messages(String message, String type, String from, long time, boolean seen) {
         this.message = message;
         this.type = type;

@@ -25,7 +25,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="8dp"
-                android:src="@drawable/mah123"
+                android:src="@drawable/default_avatar"
                 tools:ignore="ContentDescription" />
 
             <!--Close button-->
@@ -58,9 +58,9 @@
                     android:id="@+id/close_button"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:background="@drawable/ma"
+                    android:background="@drawable/default_avatar"
                     android:contentDescription="@string/float_widget_image"
-                    android:src="@drawable/mah123" />
+                    android:src="@drawable/default_avatar" />
 
                 <ImageView
                     android:id="@+id/open_button"
@@ -68,7 +68,7 @@
                     android:contentDescription="@string/image_again"
                     android:background="@drawable/message_text_background"
                     android:layout_height="50dp"
-                    android:src="@drawable/ma" />
+                    android:src="@drawable/default_avatar" />
             </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>

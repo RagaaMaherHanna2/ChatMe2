@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:initialKeyguardLayout="@layout/midowidgetlayout"
-    android:initialLayout="@layout/midowidgetlayout"
+    android:initialKeyguardLayout="@layout/status_widget"
+    android:initialLayout="@layout/status_widget"
     android:minHeight="140dp"
     android:minWidth="280dp"
     android:previewImage="@drawable/app_icon"

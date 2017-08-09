@@ -217,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
 
         public void setImage(String image, Context applicationContext)
         {
-                Picasso.with(applicationContext).load(image).error(R.drawable.ma).placeholder(R.drawable.ma).into(userProfile);
+                Picasso.with(applicationContext).load(image).error(R.drawable.default_avatar).placeholder(R.drawable.default_avatar).into(userProfile);
 
         }
     }

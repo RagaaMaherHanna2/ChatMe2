@@ -19,7 +19,7 @@ public class StatusAppWidget extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         for (int appWidgetId : appWidgetIds) {
-            final RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.midowidgetlayout);
+            final RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.status_widget);
 
             // Create an Intent to launch MainActivity
             Intent intent = new Intent(context, MainActivity.class);

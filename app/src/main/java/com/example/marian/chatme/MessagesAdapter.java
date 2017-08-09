@@ -17,28 +17,28 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MessagesViewHolder> {
 
-    private List<Messages> mMessagesList;
+    private List<Messages> messages;
     private FirebaseAuth mAuth;
 
-    // constructor
     public MessagesAdapter(List<Messages> mMessagesList) {
-        this.mMessagesList = mMessagesList;
+        this.messages = mMessagesList;
     }
 
     @Override
     public MessagesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.message_single_layout, parent, false);
-        return new MessagesViewHolder(v);
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.message_item, parent, false);
+        return new MessagesViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(MessagesViewHolder holder, int position) {
         mAuth = FirebaseAuth.getInstance();
-        String current_user_id = mAuth.getCurrentUser().getUid();
-        Messages c = mMessagesList.get(position);
-        String from_user = c.getFrom();
-        if (from_user.equals(current_user_id)) {
+        String uid = mAuth.getCurrentUser().getUid();
+        Messages message = this.messages.get(position);
+        String from_user = message.getFrom();
+
+        if (from_user.equals(uid)) {
 
             holder.messageText.setBackgroundColor(Color.WHITE);
             holder.messageText.setTextColor(Color.BLACK);
@@ -47,16 +47,14 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
             holder.messageText.setTextColor(Color.WHITE);
         }
 
-        holder.messageText.setText(c.getMessage());
+        holder.messageText.setText(message.getMessage());
     }
 
     @Override
     public int getItemCount() {
-        return mMessagesList.size();
+        return messages.size();
     }
 
-
-    //      innner class
     public class MessagesViewHolder extends RecyclerView.ViewHolder {
 
         public TextView messageText;
@@ -64,8 +62,8 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
 
         public MessagesViewHolder(View itemView) {
             super(itemView);
-            messageText = (TextView) itemView.findViewById(R.id.message_text_layout);
-            profileImage = (CircleImageView) itemView.findViewById(R.id.message_profile_layout);
+            messageText = (TextView) itemView.findViewById(R.id.message_text);
+            profileImage = (CircleImageView) itemView.findViewById(R.id.message_profile);
         }
     }
 }

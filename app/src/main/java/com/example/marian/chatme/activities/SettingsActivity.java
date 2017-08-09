@@ -104,7 +104,7 @@ public class SettingsActivity extends AppCompatActivity
                 if (!image.equals("default"))
                 {
                     Picasso.with(SettingsActivity.this).load(image).networkPolicy(NetworkPolicy.OFFLINE)
-                            .placeholder(R.drawable.ma).into(setProfile, new Callback()
+                            .placeholder(R.drawable.default_avatar).into(setProfile, new Callback()
                     {
                         @Override
                         public void onSuccess() {
@@ -113,7 +113,7 @@ public class SettingsActivity extends AppCompatActivity
 
                         @Override
                         public void onError() {
-                            Picasso.with(SettingsActivity.this).load(image).placeholder(R.drawable.ma).into(setProfile);
+                            Picasso.with(SettingsActivity.this).load(image).placeholder(R.drawable.default_avatar).into(setProfile);
 
                         }
                     });
