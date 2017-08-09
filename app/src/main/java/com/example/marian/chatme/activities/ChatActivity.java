@@ -44,9 +44,9 @@ public class ChatActivity extends AppCompatActivity {
     @BindView(R.id.chat_bar)
     Toolbar chatToolbar;
 
-    @BindView(R.id.user_name_title)
+//    @BindView(R.id.user_name_title)
     TextView chatBarTitle;
-    @BindView(R.id.chat_bar_image)
+//    @BindView(R.id.chat_bar_image)
     CircleImageView chatBarImage;
 
     @BindView(R.id.messages_RV)
@@ -72,6 +72,8 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
 
         ButterKnife.bind(this);
+        chatBarTitle = (TextView) findViewById(R.id.user_name_title);
+        chatBarImage = (CircleImageView) findViewById(R.id.chat_bar_image);
 
         setSupportActionBar(chatToolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -101,7 +103,7 @@ public class ChatActivity extends AppCompatActivity {
         loadMessages();
 
 
-//        chatBarTitle.setText(userName);
+        chatBarTitle.setText(userName);
 
 
         myRef.child("Chat").child(chatUser).addValueEventListener(new ValueEventListener() {
@@ -204,7 +206,7 @@ public class ChatActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                     if (databaseError != null) {
-                        Log.e("CHAT_APP", databaseError.getMessage().toString());
+                        Log.e(getString(R.string.chat_app), databaseError.getMessage().toString());
                     }
                 }
             });
