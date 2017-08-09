@@ -1,4 +1,4 @@
-package com.example.marian.chatme.sync;
+package com.example.marian.chatme;
 
 
 import android.content.Context;

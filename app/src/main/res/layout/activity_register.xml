@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.marian.chatme.RegisterActivity">
+    tools:context="com.example.marian.chatme.activities.RegisterActivity">
 
     <include
         android:id="@+id/register_toolbar"
@@ -15,7 +15,7 @@
 
 
     <TextView
-        android:id="@+id/tv_login"
+        android:id="@+id/login_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/create_new_account"

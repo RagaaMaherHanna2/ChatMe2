@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="horizontal"
     android:layout_height="wrap_content">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/user_single_image"
+        android:id="@+id/user_profile"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_marginBottom="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
-        android:src="@drawable/ma" />
+        android:src="@drawable/default_avatar" />
 
     <LinearLayout
         android:layout_marginTop="15dp"
@@ -24,22 +23,22 @@
 
 
         <TextView
-            android:id="@+id/user_single_name"
+            android:id="@+id/user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="@string/display_name"
+            android:text="@string/user_name"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/user_single_status"
+            android:id="@+id/user_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/user_single_name"
-            android:layout_alignStart="@+id/user_single_name"
-            android:text="@string/user_default_status"
+            android:layout_alignLeft="@+id/user_name"
+            android:layout_alignStart="@+id/user_name"
+            android:text="@string/user_status"
             android:layout_marginTop="5dp" />
 
     </LinearLayout>

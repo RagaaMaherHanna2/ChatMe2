@@ -5,7 +5,7 @@
     android:background="@color/colorPrimary">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/custom_bar_image"
+        android:id="@+id/chat_bar_image"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_alignParentRight="true"
@@ -13,8 +13,8 @@
 
 
     <TextView
-        android:id="@+id/custome_bar_title"
-        android:text="@string/display_name"
+        android:id="@+id/chat_bar_title"
+        android:text="@string/user_name"
         android:textSize="28sp"
         android:textColor="#ffffff"
         android:layout_alignParentLeft="true"

@@ -1,4 +1,4 @@
-package com.example.marian.chatme.adapter;
+package com.example.marian.chatme;
 
 
 import android.graphics.Color;
@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.marian.chatme.R;
 import com.example.marian.chatme.model.Messages;
 import com.google.firebase.auth.FirebaseAuth;
 

@@ -25,7 +25,7 @@
 
             <include
                 layout="@layout/app_bar_layout"
-                android:id="@+id/main_page_toolbar"
+                android:id="@+id/main_bar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:layout_gravity="center"
@@ -45,16 +45,17 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/users_list"
-        android:layout_marginTop="110dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="110dp"
+        android:background="@color/colorAccent"
         android:clipToPadding="false"
         android:paddingBottom="28dp"
         android:paddingLeft="@dimen/list_side_margin"
         android:paddingRight="@dimen/list_side_margin"
         android:scrollbarStyle="outsideOverlay"
         app:layoutManager="LinearLayoutManager"
-        tools:listitem="@layout/users_single_layout" />
+        tools:listitem="@layout/user_item" />
 
 
 </android.support.design.widget.CoordinatorLayout>

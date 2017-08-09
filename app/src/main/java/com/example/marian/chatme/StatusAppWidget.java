@@ -11,6 +11,8 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.widget.RemoteViews;
 
+import com.example.marian.chatme.activities.MainActivity;
+
 public class StatusAppWidget extends AppWidgetProvider {
     int tickets;
 

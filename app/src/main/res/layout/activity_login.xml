@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.marian.chatme.LoginActivity">
+    tools:context="com.example.marian.chatme.activities.LoginActivity">
 
     <include
-        android:id="@+id/login_toolbar"
+        android:id="@+id/login_bar"
         layout="@layout/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,15 +18,15 @@
 
 
     <TextView
-        android:id="@+id/tv_login"
+        android:id="@+id/login_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/login_toolbar"
+        android:layout_below="@+id/login_bar"
         android:layout_marginTop="58dp"
-        android:gravity="center_horizontal"
-        android:text="@string/login_with_your_account"
+        android:gravity="left"
+        android:text="@string/login_to_your_account"
         android:textColor="@android:color/black"
         android:textSize="24sp"
         android:textStyle="italic" />
@@ -34,10 +35,9 @@
         android:id="@+id/login_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
-        android:layout_above="@+id/login_password"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_below="@+id/login_tv"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="56dp">
 
         <EditText
             android:layout_width="match_parent"
@@ -50,10 +50,9 @@
         android:id="@+id/login_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="65dp"
-        android:layout_above="@+id/login_btn"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_below="@+id/login_email"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="18dp">
 
         <EditText
             android:layout_width="match_parent"
@@ -66,12 +65,15 @@
         android:id="@+id/login_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="5dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/login_password"
         android:background="@color/colorAccent"
         android:padding="16dp"
         android:text="@string/login"
-        android:textColor="@android:color/white" />
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:textStyle="bold|italic" />
 
 
 </RelativeLayout>

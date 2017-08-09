@@ -1,4 +1,4 @@
-package com.example.marian.chatme;
+package com.example.marian.chatme.activities;
 
 import android.app.Application;
 

@@ -1,4 +1,4 @@
-package com.example.marian.chatme;
+package com.example.marian.chatme.activities;
 
 
 import android.app.ProgressDialog;
@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.marian.chatme.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;

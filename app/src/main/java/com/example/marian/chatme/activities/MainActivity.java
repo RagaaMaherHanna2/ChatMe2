@@ -1,4 +1,4 @@
-package com.example.marian.chatme;
+package com.example.marian.chatme.activities;
 
 
 import android.content.Context;
@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.marian.chatme.R;
 import com.example.marian.chatme.model.Users;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,16 +29,21 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
+import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
-    private Toolbar mToolbar;
-
-    private DatabaseReference mUsersDatabase;
-    private RecyclerView mUsersList;
+    @BindView(R.id.main_bar)
+    Toolbar mainBar;
+    @BindView(R.id.users_list)
+    RecyclerView usersList;
+    @BindView(R.id.collapsing_toolbar_layout)
     private CollapsingToolbarLayout collapsingToolbarLayout;
+
+    private FirebaseAuth mAuth;
+    private DatabaseReference myRef;
+
 
     private static final int CODE_DRAW_OVER_OTHER_APP_PERMISSION = 2084;
 
@@ -48,23 +54,14 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        mToolbar = (Toolbar) findViewById(R.id.main_page_toolbar);
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("Mido Chat");
+        setSupportActionBar(mainBar);
+        getSupportActionBar().setTitle(R.string.bar_title);
 
-        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_layout);
+         usersList.setHasFixedSize(true);
+        usersList.setLayoutManager(new LinearLayoutManager(this));
+        myRef = FirebaseDatabase.getInstance().getReference().child("Users");
 
-        mUsersList = (RecyclerView) findViewById(R.id.users_list);
-        mUsersList.setHasFixedSize(true);
-        mUsersList.setLayoutManager(new LinearLayoutManager(this));
-        mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
-
-
-//
-        //Check if the application has draw over other apps permission or not?
-        //This permission is by default available for API<23. But for API > 23
-        //you have to ask for the permission in runtime.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
+     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
 
             //If the draw over permission is not available open the settings screen
             //to grant the permission.
@@ -85,9 +82,9 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseRecyclerAdapter<Users, UsersViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Users, UsersViewHolder>(
                 Users.class,
-                R.layout.users_single_layout,
+                R.layout.user_item,
                 UsersViewHolder.class,
-                mUsersDatabase) {
+                myRef) {
             @Override
             protected void populateViewHolder(UsersViewHolder usersViewHolder, final Users model, int position) {
                 usersViewHolder.setName(model.getName());
@@ -134,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         };
-        mUsersList.setAdapter(firebaseRecyclerAdapter);
+        usersList.setAdapter(firebaseRecyclerAdapter);
 
 
     }
@@ -204,9 +201,9 @@ public class MainActivity extends AppCompatActivity {
         public UsersViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
-            userNameView = (TextView) mView.findViewById(R.id.user_single_name);
-            userstatusView = (TextView) mView.findViewById(R.id.user_single_status);
-            userImage = (CircleImageView) mView.findViewById(R.id.user_single_image);
+            userNameView = (TextView) mView.findViewById(R.id.user_name);
+            userstatusView = (TextView) mView.findViewById(R.id.user_status);
+            userImage = (CircleImageView) mView.findViewById(R.id.user_profile);
         }
 
 

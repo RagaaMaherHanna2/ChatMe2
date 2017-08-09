@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorA"
-    tools:context="com.example.marian.chatme.ProfileActivity">
+    tools:context="com.example.marian.chatme.activities.ProfileActivity">
 
     <ImageView
         android:id="@+id/profile_image"
