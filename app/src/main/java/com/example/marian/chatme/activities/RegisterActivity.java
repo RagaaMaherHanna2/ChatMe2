@@ -8,7 +8,6 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -24,51 +23,58 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class RegisterActivity extends AppCompatActivity {
 
-    private TextInputLayout mDisplayName;
-    private TextInputLayout mEmail;
-    private TextInputLayout mPassword;
-    private Button mCreateBtn;
+    @BindView(R.id.reg_bar)
+    Toolbar regBar;
+    @BindView(R.id.reg_name)
+    TextInputLayout regName;
+    @BindView(R.id.reg_email)
+    TextInputLayout regEmail;
+    @BindView(R.id.reg_pass)
+    TextInputLayout regPass;
+    @BindView(R.id.reg_btn)
+    Button regBtn;
 
-    private Toolbar mToolbar;
+
     ProgressDialog mRegProgress;
 
     private FirebaseAuth mAuth;
-
-    private DatabaseReference mDatabase;
+    private DatabaseReference myRef;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        ButterKnife.bind(this);
+
         mRegProgress = new ProgressDialog(RegisterActivity.this);
 
-        mToolbar = (Toolbar) findViewById(R.id.register_toolbar);
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("Create new Account");
+        setSupportActionBar(regBar);
+        getSupportActionBar().setTitle(R.string.reg_bar_title);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mAuth = FirebaseAuth.getInstance();
 
-        mDisplayName = (TextInputLayout) findViewById(R.id.reg_display_name);
-        mEmail = (TextInputLayout) findViewById(R.id.login_email);
-        mPassword = (TextInputLayout) findViewById(R.id.login_password);
-
-        mCreateBtn = (Button) findViewById(R.id.login_btn);
-        mCreateBtn.setOnClickListener(new View.OnClickListener() {
+        regBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String display_name = mDisplayName.getEditText().getText().toString();
-                String email = mEmail.getEditText().getText().toString();
-                String password = mPassword.getEditText().getText().toString();
+                String display_name = regName.getEditText().getText().toString();
+                String email = regEmail.getEditText().getText().toString();
+                String password = regPass.getEditText().getText().toString();
 
                 if (!TextUtils.isEmpty(display_name) || !TextUtils.isEmpty(email) || !TextUtils.isEmpty(password)) {
-                    mRegProgress.setTitle("Registerating user");
-                    mRegProgress.setMessage("please wait while we create your account");
+                    mRegProgress.setTitle(getString(R.string.create_acc_dialog));
+                    mRegProgress.setMessage(getString(R.string.create_acc_msg));
                     mRegProgress.setCanceledOnTouchOutside(false);
                     mRegProgress.show();
+
                     register_user(display_name, email, password);
                 }
             }
@@ -81,10 +87,6 @@ public class RegisterActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d("ssssss", "createUserWithEmail:onComplete:" + task.isSuccessful());
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
                             mRegProgress.hide();
                             Toast.makeText(RegisterActivity.this, R.string.Error_login,
@@ -94,14 +96,14 @@ public class RegisterActivity extends AppCompatActivity {
 
                         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
                         String uId = currentUser.getUid();
-                        mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uId);
+                        myRef = FirebaseDatabase.getInstance().getReference().child(getString(R.string.root)).child(uId);
                         HashMap<String, String> userMap = new HashMap<String, String>();
                         userMap.put("name", display_name);
-                        userMap.put("status", "Hi there I'm Using Mido Chat App.");
-                        userMap.put("image", "defauld");
-                        userMap.put("thumb_image", "defauld");
+                        userMap.put("status", getString(R.string.default_status));
+                        userMap.put("image", "default");
+                        userMap.put("thumb_image", "default");
 
-                        mDatabase.setValue(userMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        myRef.setValue(userMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (!task.isSuccessful()) {
@@ -111,9 +113,9 @@ public class RegisterActivity extends AppCompatActivity {
                                 } else {
 
                                     mRegProgress.dismiss();
-                                    Intent mainIntent = new Intent(RegisterActivity.this, MainActivity.class);
-                                    mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    startActivity(mainIntent);
+                                    Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
                                 }
                             }
                         });

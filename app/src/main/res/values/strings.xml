@@ -1,12 +1,12 @@
 <resources>
-    <string name="app_name">ChatME</string>
+    <string name="app_name">Chat ME</string>
     <string name="need_new_account">Need New Account ?</string>
     <string name="login">Login</string>
     <string name="root">Users</string>
     <string name="float_widget">Float_widget</string>
     <string name="tickets_number">ticket</string>
-    <string name="ticket_pref_key">mahmoud</string>
-    <string name="profile_picture">profile picture</string>
+    <string name="ticket_pref_key">Ragaa</string>
+    <string name="profile_image">profileImage</string>
     <string name="logo">logo</string>
     <string name="float_widget_image">float widget image</string>
     <string name="image_again">image again</string>
@@ -19,24 +19,23 @@
     <string name="e_mailEd">E-mail</string>
     <string name="create_account">Create Account</string>
     <string name="user_name">User Name</string>
-    <string name="hi_i_m_use_mido_chat">hi,i\'m use Mido Chat</string>
-    <string name="change_status">Change Status</string>
-    <string name="change_image">Change Image</string>
+    <string name="update_status">Update Status</string>
+    <string name="update_profile">Update Profile</string>
     <string name="welcome_to_start_page">welcome to start page</string>
     <string name="your_status">Your Status</string>
     <string name="save_changes">Save Changes</string>
     <string name="account_settings">Account Settings</string>
-    <string name="sign_out">Sign out</string>
+    <string name="logout">Logout</string>
     <string name="textview">textView</string>
     <string name="chat_now">chat now</string>
     <string name="user_status">user status</string>
-    <string name="Error_login">Cannot sign in, please check ypur connection and try again</string>
-    <string name="prmmision">Draw over other app permission not available. Closing the application</string>
+    <string name="Error_login">Cannot sign in, please check your connection and try again</string>
+    <string name="permission">Draw over other app permission not available. Closing the application</string>
     <string name="not_correct">not correct</string>
     <string name="signInWithEmail">signInWithEmail:failed</string>
     <string name="error_updata">error while update the status</string>
     <string name="succes_upload">Success upload image</string>
-    <string name="message_dialog">Write your message here.</string>
+    <string name="set_message">Write your message here.</string>
     <string name="show_profile">Show Profile</string>
     <string name="dialog_title">Uploading Image....</string>
     <string name="dialog_message">please wait while we upload and process the image</string>
@@ -46,5 +45,11 @@
     <string name="message_dialog2">please wait while load the user data</string>
     <string name="message_hint">Enter your message</string>
     <string name="bar_title">Chat Me</string>
+    <string name="user_id">user_id</string>
+    <string name="send_messages">Send Message</string>
+    <string name="default_status">Hii, it is wonderful app you should try it :D</string>
+    <string name="reg_bar_title">Create new Account</string>
+    <string name="create_acc_dialog">Creating The Account</string>
+    <string name="create_acc_msg">please wait while crating the account</string>
 
 </resources>

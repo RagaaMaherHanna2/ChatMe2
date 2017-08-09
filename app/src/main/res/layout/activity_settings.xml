@@ -8,22 +8,22 @@
     tools:context="com.example.marian.chatme.activities.SettingsActivity">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/settingsImage"
+        android:id="@+id/set_profile"
         android:layout_width="170dp"
         android:layout_height="170dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="28dp"
-        android:src="@drawable/ma"
+        android:src="@drawable/default_avatar"
         tools:layout_editor_absoluteX="89dp"
         tools:layout_editor_absoluteY="55dp" />
 
 
     <TextView
-        android:id="@+id/settings_display_name"
+        android:id="@+id/set_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/settingsImage"
+        android:layout_below="@+id/set_profile"
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
         android:text="@string/user_name"
@@ -32,44 +32,44 @@
 
 
     <TextView
-        android:id="@+id/settings_status"
+        android:id="@+id/set_status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/settings_display_name"
+        android:layout_below="@+id/set_name"
         android:layout_margin="20dp"
         android:layout_marginTop="15dp"
         android:gravity="center_horizontal"
-        android:text="@string/hi_i_m_use_mido_chat"
+        android:text="@string/default_status"
         android:textColor="#ffffff"
         android:textSize="18sp" />
 
 
     <Button
-        android:id="@+id/settings_status_button"
-        android:layout_width="match_parent"
+        android:id="@+id/set_status_btn"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/message_text_background"
-        android:text="@string/change_status"
+        android:text="@string/update_status"
         android:textColor="#ffffff"
-        android:layout_marginBottom="15dp"
         android:textSize="24sp"
-        android:layout_above="@+id/settings_image_button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="34dp" />
 
 
     <Button
-        android:id="@+id/settings_image_button"
-        android:layout_width="match_parent"
+        android:id="@+id/set_profile_btn"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="12dp"
         android:background="@drawable/message_text_background"
-        android:text="@string/change_image"
-        android:layout_alignParentBottom="true"
+        android:text="@string/update_profile"
         android:textColor="#ffffff"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:layout_alignBottom="@+id/set_status_btn"
+        android:layout_alignStart="@+id/set_status_btn"
+        android:layout_marginBottom="85dp" />
 
 
 </RelativeLayout>

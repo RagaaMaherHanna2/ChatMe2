@@ -1,4 +1,4 @@
-package com.example.marian.chatme.activities;
+package com.example.marian.chatme;
 
 import android.app.Application;
 
@@ -6,14 +6,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.OkHttpDownloader;
 import com.squareup.picasso.Picasso;
 
-public class MidoChat extends Application {
+public class SaveInOfflineMode extends Application {
 
     @Override
     public void onCreate() {
         super.onCreate();
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
-        /*Picasso*/
 
         Picasso.Builder builder = new Picasso.Builder(this);
         builder.downloader(new OkHttpDownloader(this, Integer.MAX_VALUE));

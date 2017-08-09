@@ -1,6 +1,5 @@
 package com.example.marian.chatme.activities;
 
-
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,38 +16,35 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-public class ProfileActivity extends AppCompatActivity {
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
-    ImageView mProfileImageView;
-    TextView mProfileName, mProfileStatus, mProfileFriendsCount;
-//    private Button mProfileSendReqbtn,mDeclineBtn;
+public class ProfileActivity extends AppCompatActivity
+{
 
-    private DatabaseReference mUserDatabase;
-//    private DatabaseReference mFriendReqDatabase;
-//    private DatabaseReference mFriendDatabase;
-//    private DatabaseReference mNotifactionDatabase;
+    @BindView(R.id.profile_image)
+    ImageView userProfile;
+    @BindView(R.id.profile_displayName)
+    TextView profileDisplayName;
+    @BindView(R.id.profile_displayStatus)
+    TextView ProfileDisplayStatus;
 
-    private FirebaseUser mCurrent_user;
+    private DatabaseReference myRef;
+    private FirebaseUser firebaseUser;
 
     private ProgressDialog mProgressDialog;
 
-//    private String mCurrent_state;
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        final String user_id = getIntent().getStringExtra("user_id");
+        ButterKnife.bind(this);
+        final String user_id = getIntent().getStringExtra(getString(R.string.user_id));
 
-
-        mUserDatabase = FirebaseDatabase.getInstance().getReference().child(getString(R.string.root)).child(user_id);
-        mCurrent_user = FirebaseAuth.getInstance().getCurrentUser();
-
-        mProfileImageView = (ImageView) findViewById(R.id.profile_image);
-        mProfileName = (TextView) findViewById(R.id.profile_displayName);
-        mProfileStatus = (TextView) findViewById(R.id.profile_status);
-
+        myRef = FirebaseDatabase.getInstance().getReference().child(getString(R.string.root)).child(user_id);
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setTitle(getString(R.string.dialog_title2));
@@ -57,7 +53,7 @@ public class ProfileActivity extends AppCompatActivity {
         mProgressDialog.show();
 
 
-        mUserDatabase.addValueEventListener(new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String display_name = dataSnapshot.child("name").getValue().toString();
@@ -65,9 +61,9 @@ public class ProfileActivity extends AppCompatActivity {
                 String image = dataSnapshot.child("image").getValue().toString();
 
 
-                mProfileName.setText(display_name);
-                mProfileStatus.setText(status);
-                Picasso.with(ProfileActivity.this).load(image).placeholder(R.drawable.ma).into(mProfileImageView);
+                profileDisplayName.setText(display_name);
+                ProfileDisplayStatus.setText(status);
+                Picasso.with(ProfileActivity.this).load(image).placeholder(R.drawable.default_avatar).into(userProfile);
                 mProgressDialog.dismiss();
 
 

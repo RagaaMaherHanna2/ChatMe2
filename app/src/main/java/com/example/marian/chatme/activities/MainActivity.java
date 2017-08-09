@@ -59,12 +59,11 @@ public class MainActivity extends AppCompatActivity {
 
          usersList.setHasFixedSize(true);
         usersList.setLayoutManager(new LinearLayoutManager(this));
-        myRef = FirebaseDatabase.getInstance().getReference().child("Users");
+        myRef = FirebaseDatabase.getInstance().getReference().child(getString(R.string.root));
 
      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
 
-            //If the draw over permission is not available open the settings screen
-            //to grant the permission.
+
             Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
                     Uri.parse("package:" + getPackageName()));
             startActivityForResult(intent, CODE_DRAW_OVER_OTHER_APP_PERMISSION);
@@ -84,7 +83,8 @@ public class MainActivity extends AppCompatActivity {
                 Users.class,
                 R.layout.user_item,
                 UsersViewHolder.class,
-                myRef) {
+                myRef)
+        {
             @Override
             protected void populateViewHolder(UsersViewHolder usersViewHolder, final Users model, int position) {
                 usersViewHolder.setName(model.getName());
@@ -92,12 +92,12 @@ public class MainActivity extends AppCompatActivity {
                 usersViewHolder.setImage(model.getImage(), getApplicationContext());
 
                 final String user_id = getRef(position).getKey();
-                usersViewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                usersViewHolder.view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
                         AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
-                        builder1.setMessage(R.string.message_dialog);
+                        builder1.setMessage(R.string.set_message);
                         builder1.setCancelable(true);
 
                         builder1.setPositiveButton(
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         Intent profileIntent = new Intent(MainActivity.this, ProfileActivity.class);
-                                        profileIntent.putExtra("user_id", user_id);
+                                        profileIntent.putExtra(getString(R.string.user_id), user_id);
                                         startActivity(profileIntent);
 
                                         dialog.cancel();
@@ -113,12 +113,12 @@ public class MainActivity extends AppCompatActivity {
                                 });
 
                         builder1.setNegativeButton(
-                                "Send Message",
+                                R.string.send_messages,
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         Intent chatIntent = new Intent(MainActivity.this, ChatActivity.class);
-                                        chatIntent.putExtra("user_id", user_id);
-                                        chatIntent.putExtra("user_name", model.getName());
+                                        chatIntent.putExtra(getString(R.string.user_id), user_id);
+                                        chatIntent.putExtra(getString(R.id.get_user_name), model.getName());
                                         startActivity(chatIntent);
 
                                         dialog.cancel();
@@ -154,14 +154,13 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
 
-        if (item.getItemId() == R.id.main_layout_btn) {
+        if (item.getItemId() == R.id.logout) {
             FirebaseAuth.getInstance().signOut();
             sendToStart();
-        } else if (item.getItemId() == R.id.main_Settingd_btn) {
+        } else if (item.getItemId() == R.id.settings) {
             Intent settingsIntent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(settingsIntent);
-//        } else if (item.getItemId() == R.id.float_widget) {
-////            initializeView();
+
         }
         return true;
     }
@@ -170,57 +169,52 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CODE_DRAW_OVER_OTHER_APP_PERMISSION) {
-
-            //Check if the permission is granted or not.
             if (resultCode == RESULT_OK) {
-//                initializeView();
-            } else { //Permission is not available
-                Toast.makeText(this, R.string.prmmision, Toast.LENGTH_SHORT).show();
-
+            }
+            else
+            {
+                Toast.makeText(this, R.string.permission, Toast.LENGTH_SHORT).show();
                 finish();
             }
-        } else {
+        }
+        else
+        {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
-//    private void initializeView() {
-//        startService(new Intent(MainActivity.this, FloatingViewService.class));
-//        finish();
-//    }
-
 
     public static class UsersViewHolder extends RecyclerView.ViewHolder {
 
-        TextView userNameView;
-        TextView userstatusView;
-        CircleImageView userImage;
+        TextView userName;
+        TextView userStatus;
 
-        View mView;
+        CircleImageView userProfile;
 
-        public UsersViewHolder(View itemView) {
+        View view;
+
+        public UsersViewHolder(View itemView)
+        {
             super(itemView);
-            mView = itemView;
-            userNameView = (TextView) mView.findViewById(R.id.user_name);
-            userstatusView = (TextView) mView.findViewById(R.id.user_status);
-            userImage = (CircleImageView) mView.findViewById(R.id.user_profile);
+            view = itemView;
+            userName = (TextView) view.findViewById(R.id.user_name);
+            userStatus = (TextView) view.findViewById(R.id.user_status);
+            userProfile = (CircleImageView) view.findViewById(R.id.user_profile);
         }
 
 
         public void setName(String name) {
-            userNameView.setText(name);
+            userName.setText(name);
         }
 
         public void setUserStatus(String userStatus) {
-            userstatusView.setText(userStatus);
+            this.userStatus.setText(userStatus);
         }
 
-        public void setImage(String image, Context applicationContext) {
-//            if (!image.equals(String.valueOf("default"))) {
-                Picasso.with(applicationContext).load(image).error(R.drawable.ma).placeholder(R.drawable.ma).into(userImage);
-//            }else{
-//                userImage.setImageResource(R.drawable.ma);
-//            }
+        public void setImage(String image, Context applicationContext)
+        {
+                Picasso.with(applicationContext).load(image).error(R.drawable.ma).placeholder(R.drawable.ma).into(userProfile);
+
         }
     }
 

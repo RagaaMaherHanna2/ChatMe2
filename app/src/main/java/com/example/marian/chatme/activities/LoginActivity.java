@@ -30,11 +30,11 @@ public class LoginActivity extends AppCompatActivity {
 
     @BindView(R.id.login_bar)
     Toolbar loginBar;
-    @BindView(R.id.login_email)
+    @BindView(R.id.reg_email)
     TextInputLayout login_Email;
-    @BindView(R.id.login_password)
+    @BindView(R.id.reg_pass)
     TextInputLayout login_password;
-    @BindView(R.id.login_btn)
+    @BindView(R.id.reg_btn)
     Button loginBtn;
 
     ProgressDialog progressDialog;
