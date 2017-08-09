@@ -3,14 +3,11 @@
     <string name="need_new_account">Need New Account ?</string>
     <string name="login">Login</string>
     <string name="root">Users</string>
-    <string name="float_widget">Float_widget</string>
     <string name="tickets_number">ticket</string>
     <string name="ticket_pref_key">Ragaa</string>
-    <string name="profile_image">profileImage</string>
+    <string name="profile_image">profile Image</string>
     <string name="logo">logo</string>
-    <string name="float_widget_image">float widget image</string>
     <string name="image_again">image again</string>
-    <string name="input">Input</string>
     <string name="login_to_your_account">Login to Your Account</string>
     <string name="e_mail">E-mail</string>
     <string name="password">password</string>
@@ -33,8 +30,8 @@
     <string name="permission">Draw over other app permission not available. Closing the application</string>
     <string name="not_correct">not correct</string>
     <string name="signInWithEmail">signInWithEmail:failed</string>
-    <string name="error_updata">error while update the status</string>
-    <string name="succes_upload">Success upload image</string>
+    <string name="error_update">error while update the status</string>
+    <string name="success_upload">Success upload image</string>
     <string name="set_message">Write your message here.</string>
     <string name="show_profile">Show Profile</string>
     <string name="dialog_title">Uploading Image....</string>

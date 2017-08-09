@@ -73,7 +73,7 @@ public class StatusActivity extends AppCompatActivity {
                             dialog.dismiss();
                             finish();
                         } else {
-                            Toast.makeText(StatusActivity.this, R.string.error_updata, Toast.LENGTH_LONG).show();
+                            Toast.makeText(StatusActivity.this, R.string.error_update, Toast.LENGTH_LONG).show();
                         }
 
                     }

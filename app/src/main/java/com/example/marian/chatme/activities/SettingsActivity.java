@@ -188,7 +188,7 @@ public class SettingsActivity extends AppCompatActivity
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         mProgressDialog.dismiss();
-                                        Toast.makeText(SettingsActivity.this, R.string.succes_upload, Toast.LENGTH_LONG).show();
+                                        Toast.makeText(SettingsActivity.this, R.string.success_upload, Toast.LENGTH_LONG).show();
                                     }
                                 }
                             });

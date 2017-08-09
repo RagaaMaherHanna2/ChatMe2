@@ -44,9 +44,9 @@ public class ChatActivity extends AppCompatActivity {
     @BindView(R.id.chat_bar)
     Toolbar chatToolbar;
 
-//    @BindView(R.id.user_name_title)
-    TextView chatBarTitle;
-//    @BindView(R.id.chat_bar_image)
+   @BindView(R.id.user_name_title)
+   TextView chatBarTitle;
+    @BindView(R.id.chat_bar_image)
     CircleImageView chatBarImage;
 
     @BindView(R.id.messages_RV)
@@ -60,7 +60,7 @@ public class ChatActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference myRef;
 
-    private String currentUserId,chatUser, userName;
+    private String currentUserId,chatUser,userName;
 
     private LinearLayoutManager linearLayoutManager;
     private MessagesAdapter messagesAdapter;
@@ -72,36 +72,31 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
 
         ButterKnife.bind(this);
-        chatBarTitle = (TextView) findViewById(R.id.user_name_title);
-        chatBarImage = (CircleImageView) findViewById(R.id.chat_bar_image);
-
-        setSupportActionBar(chatToolbar);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setDisplayShowCustomEnabled(true);
-
 
         myRef = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
         currentUserId = mAuth.getCurrentUser().getUid();
 
-
-        chatUser = getIntent().getStringExtra("user_id");
-        userName = getIntent().getStringExtra("user_name");
-
-        getSupportActionBar().setTitle(userName);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowCustomEnabled(true);
+        linearLayoutManager = new LinearLayoutManager(this);
 
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View action_bar_view = inflater.inflate(R.layout.chat_bar_item, null);
         actionBar.setCustomView(action_bar_view);
 
-        linearLayoutManager = new LinearLayoutManager(this);
+        chatUser = getIntent().getStringExtra("user_id");
+        userName = getIntent().getStringExtra("user_name");
+
+        setSupportActionBar(chatToolbar);
+        getSupportActionBar().setTitle(R.string.chat_bar_title);
+
         messages.setHasFixedSize(true);
         messages.setLayoutManager(linearLayoutManager);
         messagesAdapter = new MessagesAdapter(messagesList);
         messages.setAdapter(messagesAdapter);
         loadMessages();
-
 
         chatBarTitle.setText(userName);
 
