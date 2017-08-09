@@ -9,33 +9,38 @@ import android.widget.Button;
 
 import com.example.marian.chatme.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class StartActivity extends AppCompatActivity {
 
-    private Button mloginBtn;
-    private Button mRegBtn;
+    @BindView(R.id.start_login_btn)
+    Button startLoginBtn;
+    @BindView(R.id.start_reg_btn)
+    Button startRegBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        mloginBtn = (Button) findViewById(R.id.start_login_btn);
-        mRegBtn = (Button) findViewById(R.id.start_reg_btn);
+        ButterKnife.bind(this);
 
-
-        mloginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent reg_intent = new Intent(StartActivity.this, LoginActivity.class);
-                startActivity(reg_intent);
-            }
-        });
-        mRegBtn.setOnClickListener(new View.OnClickListener() {
+        startRegBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent reg_intent = new Intent(StartActivity.this, RegisterActivity.class);
                 startActivity(reg_intent);
             }
         });
+
+        startLoginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent reg_intent = new Intent(StartActivity.this, LoginActivity.class);
+                startActivity(reg_intent);
+            }
+        });
+
     }
 }

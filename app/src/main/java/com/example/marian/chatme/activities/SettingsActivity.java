@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -39,6 +40,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SettingsActivity extends AppCompatActivity
 {
+    @BindView(R.id.settings_bar)
+    Toolbar settingsBar;
     @BindView(R.id.set_profile)
     CircleImageView setProfile;
     @BindView(R.id.set_name)
@@ -66,6 +69,10 @@ public class SettingsActivity extends AppCompatActivity
         setContentView(R.layout.activity_settings);
 
         ButterKnife.bind(this);
+
+        setSupportActionBar(settingsBar);
+        getSupportActionBar().setTitle(getString(R.string.settings));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         storageRef = FirebaseStorage.getInstance().getReference();
 

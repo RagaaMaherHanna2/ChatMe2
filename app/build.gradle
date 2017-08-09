@@ -1,6 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'key0'
+            keyPassword 'udacity'
+            storeFile file("${rootDir}/Marian_Store.jks")
+            storePassword 'udacity'
+        }
+    }
+
     compileSdkVersion 25
     buildToolsVersion "26.0.1"
     defaultConfig {
@@ -15,6 +24,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
 }
@@ -30,38 +40,27 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support:support-v4:25.3.1'
-
     //circleImage
     compile 'de.hdodenhof:circleimageview:2.1.0'
-
     //Crop Image
     compile 'com.theartofdev.edmodo:android-image-cropper:2.4.7'
     compile 'com.iceteck.silicompressorr:silicompressor:2.0'
-
     //picasso
     compile 'com.squareup.picasso:picasso:2.5.2'
-
     //fireBase UI
     compile 'com.firebaseui:firebase-ui-database:1.1.1'
-
     compile 'com.squareup.okhttp:okhttp:2.5.0'
-
     //JobDispatcher
     compile 'com.firebase:firebase-jobdispatcher:0.7.0'
-
     //Firebase Storage
     compile 'com.google.firebase:firebase-storage:10.0.1'
-
     //Firebase Auth
     compile 'com.google.firebase:firebase-auth:10.0.1'
-
     //Firebase Database
     compile 'com.google.firebase:firebase-database:10.0.1'
-
     //butterKnife
     compile 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
-
     testCompile 'junit:junit:4.12'
 }
 

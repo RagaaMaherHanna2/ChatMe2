@@ -30,6 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar mainBar;
     @BindView(R.id.users_list)
     RecyclerView usersList;
-    @BindView(R.id.collapsing_toolbar_layout)
+
     private CollapsingToolbarLayout collapsingToolbarLayout;
 
     private FirebaseAuth mAuth;
@@ -52,12 +53,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ButterKnife.bind(this);
+        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_layout);
         mAuth = FirebaseAuth.getInstance();
 
         setSupportActionBar(mainBar);
         getSupportActionBar().setTitle(R.string.bar_title);
 
-         usersList.setHasFixedSize(true);
+        usersList.setHasFixedSize(true);
         usersList.setLayoutManager(new LinearLayoutManager(this));
         myRef = FirebaseDatabase.getInstance().getReference().child(getString(R.string.root));
 
@@ -73,8 +76,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser == null) {
+        FirebaseUser firebaseUser = mAuth.getCurrentUser();
+        if (firebaseUser == null) {
             sendToStart();
         }
 
@@ -82,11 +85,12 @@ public class MainActivity extends AppCompatActivity {
         FirebaseRecyclerAdapter<Users, UsersViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Users, UsersViewHolder>(
                 Users.class,
                 R.layout.user_item,
-                UsersViewHolder.class,
-                myRef)
+                UsersViewHolder.class,myRef)
+
         {
             @Override
-            protected void populateViewHolder(UsersViewHolder usersViewHolder, final Users model, int position) {
+            protected void populateViewHolder(UsersViewHolder usersViewHolder, final Users model, int position)
+            {
                 usersViewHolder.setName(model.getName());
                 usersViewHolder.setUserStatus(model.getStatus());
                 usersViewHolder.setImage(model.getImage(), getApplicationContext());
@@ -105,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         Intent profileIntent = new Intent(MainActivity.this, ProfileActivity.class);
-                                        profileIntent.putExtra(getString(R.string.user_id), user_id);
+                                        profileIntent.putExtra("user_id", user_id);
                                         startActivity(profileIntent);
 
                                         dialog.cancel();
@@ -117,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         Intent chatIntent = new Intent(MainActivity.this, ChatActivity.class);
-                                        chatIntent.putExtra(getString(R.string.user_id), user_id);
+                                        chatIntent.putExtra("user_id", user_id);
                                         chatIntent.putExtra(getString(R.id.get_user_name), model.getName());
                                         startActivity(chatIntent);
 

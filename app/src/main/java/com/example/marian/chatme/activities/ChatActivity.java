@@ -43,7 +43,8 @@ public class ChatActivity extends AppCompatActivity {
 
     @BindView(R.id.chat_bar)
     Toolbar chatToolbar;
-    @BindView(R.id.chat_bar_title)
+
+    @BindView(R.id.user_name_title)
     TextView chatBarTitle;
     @BindView(R.id.chat_bar_image)
     CircleImageView chatBarImage;
@@ -69,6 +70,7 @@ public class ChatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+
         ButterKnife.bind(this);
 
         setSupportActionBar(chatToolbar);
@@ -88,10 +90,9 @@ public class ChatActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(userName);
 
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View action_bar_view = inflater.inflate(R.layout.chat_custom_bar, null);
+        View action_bar_view = inflater.inflate(R.layout.chat_bar_item, null);
         actionBar.setCustomView(action_bar_view);
 
-        // RecyclerView
         linearLayoutManager = new LinearLayoutManager(this);
         messages.setHasFixedSize(true);
         messages.setLayoutManager(linearLayoutManager);
@@ -100,7 +101,7 @@ public class ChatActivity extends AppCompatActivity {
         loadMessages();
 
 
-        chatBarTitle.setText(userName);
+//        chatBarTitle.setText(userName);
 
 
         myRef.child("Chat").child(chatUser).addValueEventListener(new ValueEventListener() {

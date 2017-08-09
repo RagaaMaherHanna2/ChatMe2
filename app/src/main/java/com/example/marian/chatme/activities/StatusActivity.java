@@ -18,17 +18,23 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class StatusActivity extends AppCompatActivity {
 
-    private Toolbar mToolbar;
-    private TextInputLayout mStatus;
-    private Button mSavebtn;
+    @BindView(R.id.status_bar)
+    Toolbar mToolbar;
+    @BindView(R.id.status_update)
+    TextInputLayout statusUpdate;
+    @BindView(R.id.status_update_btn)
+    Button statusUpdateBtn;
+
+
     private ProgressDialog dialog;
 
-
-    // firebase
-    private DatabaseReference mStatusDatabase;
-    private FirebaseUser currentUser;
+    private DatabaseReference myRef;
+    private FirebaseUser firebaseUser;
 
 
     @Override
@@ -36,25 +42,22 @@ public class StatusActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status);
 
-        //firebase
-        currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        String uId = currentUser.getUid();
-        mStatusDatabase = FirebaseDatabase.getInstance().getReference().child(getString(R.string.root)).child(uId);
+        ButterKnife.bind(this);
 
-        mToolbar = (Toolbar) findViewById(R.id.status_toolbar);
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        String uId = firebaseUser.getUid();
+        myRef = FirebaseDatabase.getInstance().getReference().child(getString(R.string.root)).child(uId);
+
+        mToolbar = (Toolbar) findViewById(R.id.status_bar);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("Account Status");
+        getSupportActionBar().setTitle(getString(R.string.update_status));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         String status_value = getIntent().getStringExtra("status_value").toString();
 
+        statusUpdate.getEditText().setText(status_value);
 
-        // layout
-        mStatus = (TextInputLayout) findViewById(R.id.status_input);
-        mSavebtn = (Button) findViewById(R.id.status_save_btn);
-        mStatus.getEditText().setText(status_value);
-
-        mSavebtn.setOnClickListener(new View.OnClickListener() {
+        statusUpdateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog = new ProgressDialog(StatusActivity.this);
@@ -62,8 +65,8 @@ public class StatusActivity extends AppCompatActivity {
                 dialog.setMessage(getString(R.string.message_dialog1));
                 dialog.show();
 
-                String status = mStatus.getEditText().getText().toString();
-                mStatusDatabase.child("status").setValue(status).addOnCompleteListener(new OnCompleteListener<Void>() {
+                String status = statusUpdate.getEditText().getText().toString();
+                myRef.child("status").setValue(status).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
@@ -78,7 +81,6 @@ public class StatusActivity extends AppCompatActivity {
 
             }
         });
-//
 
     }
 }

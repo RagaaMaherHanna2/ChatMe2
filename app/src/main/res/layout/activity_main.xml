@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -24,7 +25,7 @@
 
 
             <include
-                layout="@layout/app_bar_layout"
+                layout="@layout/app_bar"
                 android:id="@+id/main_bar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
@@ -46,7 +47,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/users_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="468dp"
         android:layout_marginTop="110dp"
         android:background="@color/colorAccent"
         android:clipToPadding="false"

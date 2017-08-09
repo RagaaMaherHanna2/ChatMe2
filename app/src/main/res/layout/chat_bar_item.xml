@@ -9,11 +9,11 @@
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_alignParentRight="true"
-        android:src="@drawable/ma" />
+        android:src="@drawable/default_avatar" />
 
 
     <TextView
-        android:id="@+id/chat_bar_title"
+        android:id="@+id/user_name_title"
         android:text="@string/user_name"
         android:textSize="28sp"
         android:textColor="#ffffff"

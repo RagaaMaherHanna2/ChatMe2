@@ -2,13 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/update_btn"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.marian.chatme.activities.StatusActivity">
 
     <include
-        layout="@layout/app_bar_layout"
-        android:id="@+id/status_toolbar"
+        android:id="@+id/status_bar"
+        layout="@layout/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -16,30 +17,28 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/status_input"
+        android:id="@+id/status_update"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/status_toolbar"
+        android:layout_below="@+id/status_bar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="89dp">
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/your_status" />
+            android:hint="@string/update_your_status" />
     </android.support.design.widget.TextInputLayout>
 
     <Button
-        android:id="@+id/status_save_btn"
+        android:id="@+id/status_update_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/save_changes"
-        android:textSize="24sp"
-        android:textColor="#ffffff"
-        android:background="@drawable/message_text_background"
-        android:layout_below="@+id/status_input"
-        android:layout_alignParentRight="true"
+        android:layout_marginEnd="49dp"
+        android:text="@string/upate"
+        android:textSize="18sp"
+        tools:text="Update"
+        android:layout_centerVertical="true"
         android:layout_alignParentEnd="true" />
 
 
